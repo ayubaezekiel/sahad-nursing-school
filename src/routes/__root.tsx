@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
@@ -11,6 +12,7 @@ function RootComponent() {
     <>
       <Header />
       <Outlet />
+      <Footer />
       <TanStackRouterDevtools position="bottom-right" />
     </>
   );
