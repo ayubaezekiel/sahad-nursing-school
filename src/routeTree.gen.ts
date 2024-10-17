@@ -11,162 +11,267 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as FacultyImport } from './routes/faculty'
-import { Route as ContactImport } from './routes/contact'
-import { Route as AboutImport } from './routes/about'
-import { Route as IndexImport } from './routes/index'
-import { Route as ApplyIndexImport } from './routes/apply/index'
-import { Route as ApplyApplyStartImport } from './routes/apply/apply.start'
+import { Route as LayoutImport } from './routes/_layout'
+import { Route as LayoutIndexImport } from './routes/_layout/index'
+import { Route as LayoutProgramsImport } from './routes/_layout/programs'
+import { Route as LayoutFacultyImport } from './routes/_layout/faculty'
+import { Route as LayoutContactImport } from './routes/_layout/contact'
+import { Route as LayoutAdminImport } from './routes/_layout.admin'
+import { Route as LayoutAboutImport } from './routes/_layout/about'
+import { Route as LayoutApplyIndexImport } from './routes/_layout/apply/index'
+import { Route as LayoutAdminIndexImport } from './routes/_layout/admin/index'
+import { Route as LayoutApplyApplyStartImport } from './routes/_layout/apply/apply.start'
 
 // Create/Update Routes
 
-const FacultyRoute = FacultyImport.update({
-  path: '/faculty',
+const LayoutRoute = LayoutImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ContactRoute = ContactImport.update({
-  path: '/contact',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutRoute = AboutImport.update({
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const IndexRoute = IndexImport.update({
+const LayoutIndexRoute = LayoutIndexImport.update({
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => LayoutRoute,
 } as any)
 
-const ApplyIndexRoute = ApplyIndexImport.update({
+const LayoutProgramsRoute = LayoutProgramsImport.update({
+  path: '/programs',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutFacultyRoute = LayoutFacultyImport.update({
+  path: '/faculty',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutContactRoute = LayoutContactImport.update({
+  path: '/contact',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutAdminRoute = LayoutAdminImport.update({
+  path: '/admin',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutAboutRoute = LayoutAboutImport.update({
+  path: '/about',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutApplyIndexRoute = LayoutApplyIndexImport.update({
   path: '/apply/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => LayoutRoute,
 } as any)
 
-const ApplyApplyStartRoute = ApplyApplyStartImport.update({
+const LayoutAdminIndexRoute = LayoutAdminIndexImport.update({
+  path: '/',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+
+const LayoutApplyApplyStartRoute = LayoutApplyApplyStartImport.update({
   path: '/apply/apply/start',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => LayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
+    '/_layout/about': {
+      id: '/_layout/about'
       path: '/about'
       fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof LayoutAboutImport
+      parentRoute: typeof LayoutImport
     }
-    '/contact': {
-      id: '/contact'
+    '/_layout/admin': {
+      id: '/_layout/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof LayoutAdminImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/contact': {
+      id: '/_layout/contact'
       path: '/contact'
       fullPath: '/contact'
-      preLoaderRoute: typeof ContactImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof LayoutContactImport
+      parentRoute: typeof LayoutImport
     }
-    '/faculty': {
-      id: '/faculty'
+    '/_layout/faculty': {
+      id: '/_layout/faculty'
       path: '/faculty'
       fullPath: '/faculty'
-      preLoaderRoute: typeof FacultyImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof LayoutFacultyImport
+      parentRoute: typeof LayoutImport
     }
-    '/apply/': {
-      id: '/apply/'
+    '/_layout/programs': {
+      id: '/_layout/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof LayoutProgramsImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/': {
+      id: '/_layout/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutIndexImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/admin/': {
+      id: '/_layout/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof LayoutAdminIndexImport
+      parentRoute: typeof LayoutAdminImport
+    }
+    '/_layout/apply/': {
+      id: '/_layout/apply/'
       path: '/apply'
       fullPath: '/apply'
-      preLoaderRoute: typeof ApplyIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof LayoutApplyIndexImport
+      parentRoute: typeof LayoutImport
     }
-    '/apply/apply/start': {
-      id: '/apply/apply/start'
+    '/_layout/apply/apply/start': {
+      id: '/_layout/apply/apply/start'
       path: '/apply/apply/start'
       fullPath: '/apply/apply/start'
-      preLoaderRoute: typeof ApplyApplyStartImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof LayoutApplyApplyStartImport
+      parentRoute: typeof LayoutImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface LayoutAdminRouteChildren {
+  LayoutAdminIndexRoute: typeof LayoutAdminIndexRoute
+}
+
+const LayoutAdminRouteChildren: LayoutAdminRouteChildren = {
+  LayoutAdminIndexRoute: LayoutAdminIndexRoute,
+}
+
+const LayoutAdminRouteWithChildren = LayoutAdminRoute._addFileChildren(
+  LayoutAdminRouteChildren,
+)
+
+interface LayoutRouteChildren {
+  LayoutAboutRoute: typeof LayoutAboutRoute
+  LayoutAdminRoute: typeof LayoutAdminRouteWithChildren
+  LayoutContactRoute: typeof LayoutContactRoute
+  LayoutFacultyRoute: typeof LayoutFacultyRoute
+  LayoutProgramsRoute: typeof LayoutProgramsRoute
+  LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutApplyIndexRoute: typeof LayoutApplyIndexRoute
+  LayoutApplyApplyStartRoute: typeof LayoutApplyApplyStartRoute
+}
+
+const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutAboutRoute: LayoutAboutRoute,
+  LayoutAdminRoute: LayoutAdminRouteWithChildren,
+  LayoutContactRoute: LayoutContactRoute,
+  LayoutFacultyRoute: LayoutFacultyRoute,
+  LayoutProgramsRoute: LayoutProgramsRoute,
+  LayoutIndexRoute: LayoutIndexRoute,
+  LayoutApplyIndexRoute: LayoutApplyIndexRoute,
+  LayoutApplyApplyStartRoute: LayoutApplyApplyStartRoute,
+}
+
+const LayoutRouteWithChildren =
+  LayoutRoute._addFileChildren(LayoutRouteChildren)
+
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
-  '/faculty': typeof FacultyRoute
-  '/apply': typeof ApplyIndexRoute
-  '/apply/apply/start': typeof ApplyApplyStartRoute
+  '': typeof LayoutRouteWithChildren
+  '/about': typeof LayoutAboutRoute
+  '/admin': typeof LayoutAdminRouteWithChildren
+  '/contact': typeof LayoutContactRoute
+  '/faculty': typeof LayoutFacultyRoute
+  '/programs': typeof LayoutProgramsRoute
+  '/': typeof LayoutIndexRoute
+  '/admin/': typeof LayoutAdminIndexRoute
+  '/apply': typeof LayoutApplyIndexRoute
+  '/apply/apply/start': typeof LayoutApplyApplyStartRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
-  '/faculty': typeof FacultyRoute
-  '/apply': typeof ApplyIndexRoute
-  '/apply/apply/start': typeof ApplyApplyStartRoute
+  '/about': typeof LayoutAboutRoute
+  '/contact': typeof LayoutContactRoute
+  '/faculty': typeof LayoutFacultyRoute
+  '/programs': typeof LayoutProgramsRoute
+  '/': typeof LayoutIndexRoute
+  '/admin': typeof LayoutAdminIndexRoute
+  '/apply': typeof LayoutApplyIndexRoute
+  '/apply/apply/start': typeof LayoutApplyApplyStartRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
-  '/faculty': typeof FacultyRoute
-  '/apply/': typeof ApplyIndexRoute
-  '/apply/apply/start': typeof ApplyApplyStartRoute
+  '/_layout': typeof LayoutRouteWithChildren
+  '/_layout/about': typeof LayoutAboutRoute
+  '/_layout/admin': typeof LayoutAdminRouteWithChildren
+  '/_layout/contact': typeof LayoutContactRoute
+  '/_layout/faculty': typeof LayoutFacultyRoute
+  '/_layout/programs': typeof LayoutProgramsRoute
+  '/_layout/': typeof LayoutIndexRoute
+  '/_layout/admin/': typeof LayoutAdminIndexRoute
+  '/_layout/apply/': typeof LayoutApplyIndexRoute
+  '/_layout/apply/apply/start': typeof LayoutApplyApplyStartRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
+    | ''
     | '/about'
+    | '/admin'
     | '/contact'
     | '/faculty'
+    | '/programs'
+    | '/'
+    | '/admin/'
     | '/apply'
     | '/apply/apply/start'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/faculty' | '/apply' | '/apply/apply/start'
-  id:
-    | '__root__'
-    | '/'
+  to:
     | '/about'
     | '/contact'
     | '/faculty'
-    | '/apply/'
+    | '/programs'
+    | '/'
+    | '/admin'
+    | '/apply'
     | '/apply/apply/start'
+  id:
+    | '__root__'
+    | '/_layout'
+    | '/_layout/about'
+    | '/_layout/admin'
+    | '/_layout/contact'
+    | '/_layout/faculty'
+    | '/_layout/programs'
+    | '/_layout/'
+    | '/_layout/admin/'
+    | '/_layout/apply/'
+    | '/_layout/apply/apply/start'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  ContactRoute: typeof ContactRoute
-  FacultyRoute: typeof FacultyRoute
-  ApplyIndexRoute: typeof ApplyIndexRoute
-  ApplyApplyStartRoute: typeof ApplyApplyStartRoute
+  LayoutRoute: typeof LayoutRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  ContactRoute: ContactRoute,
-  FacultyRoute: FacultyRoute,
-  ApplyIndexRoute: ApplyIndexRoute,
-  ApplyApplyStartRoute: ApplyApplyStartRoute,
+  LayoutRoute: LayoutRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -181,31 +286,60 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/about",
-        "/contact",
-        "/faculty",
-        "/apply/",
-        "/apply/apply/start"
+        "/_layout"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
+    "/_layout": {
+      "filePath": "_layout.tsx",
+      "children": [
+        "/_layout/about",
+        "/_layout/admin",
+        "/_layout/contact",
+        "/_layout/faculty",
+        "/_layout/programs",
+        "/_layout/",
+        "/_layout/apply/",
+        "/_layout/apply/apply/start"
+      ]
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/_layout/about": {
+      "filePath": "_layout/about.tsx",
+      "parent": "/_layout"
     },
-    "/contact": {
-      "filePath": "contact.tsx"
+    "/_layout/admin": {
+      "filePath": "_layout.admin.tsx",
+      "parent": "/_layout",
+      "children": [
+        "/_layout/admin/"
+      ]
     },
-    "/faculty": {
-      "filePath": "faculty.tsx"
+    "/_layout/contact": {
+      "filePath": "_layout/contact.tsx",
+      "parent": "/_layout"
     },
-    "/apply/": {
-      "filePath": "apply/index.tsx"
+    "/_layout/faculty": {
+      "filePath": "_layout/faculty.tsx",
+      "parent": "/_layout"
     },
-    "/apply/apply/start": {
-      "filePath": "apply/apply.start.tsx"
+    "/_layout/programs": {
+      "filePath": "_layout/programs.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/": {
+      "filePath": "_layout/index.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/admin/": {
+      "filePath": "_layout/admin/index.tsx",
+      "parent": "/_layout/admin"
+    },
+    "/_layout/apply/": {
+      "filePath": "_layout/apply/index.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/apply/apply/start": {
+      "filePath": "_layout/apply/apply.start.tsx",
+      "parent": "/_layout"
     }
   }
 }

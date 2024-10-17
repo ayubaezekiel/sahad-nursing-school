@@ -1,48 +1,48 @@
-import { Footer } from "@/components/Footer";
-import { image_url } from "@/lib/constants";
-import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
+import { Footer } from '@/components/Footer'
+import { image_url } from '@/lib/constants'
+import { Button, Card, Flex, Heading, Text } from '@radix-ui/themes'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { motion } from 'framer-motion'
+import { ArrowRightIcon, ChevronRight } from 'lucide-react'
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/_layout/')({
   component: HomeComponent,
-});
+})
 
 function HomeComponent() {
   return (
     <div>
       <HomePage />
     </div>
-  );
+  )
 }
 
 const programs = [
   {
-    name: "Bachelor of Science in Nursing",
-    duration: "4 years",
+    name: 'Bachelor of Science in Nursing',
+    duration: '4 years',
     description:
-      "Comprehensive program preparing students for a wide range of nursing careers in various healthcare settings.",
+      'Comprehensive program preparing students for a wide range of nursing careers in various healthcare settings.',
   },
   {
-    name: "Associate Degree in Nursing",
-    duration: "2 years",
+    name: 'Associate Degree in Nursing',
+    duration: '2 years',
     description:
-      "Fast-track program for entry-level nursing positions, focusing on essential clinical skills and knowledge.",
+      'Fast-track program for entry-level nursing positions, focusing on essential clinical skills and knowledge.',
   },
   {
-    name: "Licensed Practical Nurse Program",
-    duration: "1 year",
+    name: 'Licensed Practical Nurse Program',
+    duration: '1 year',
     description:
-      "Intensive program for aspiring LPNs, covering fundamental nursing skills and patient care techniques.",
+      'Intensive program for aspiring LPNs, covering fundamental nursing skills and patient care techniques.',
   },
   {
-    name: "RN to BSN Bridge Program",
-    duration: "1-2 years",
+    name: 'RN to BSN Bridge Program',
+    duration: '1-2 years',
     description:
-      "Advanced program for registered nurses to earn a BSN, enhancing career opportunities and knowledge.",
+      'Advanced program for registered nurses to earn a BSN, enhancing career opportunities and knowledge.',
   },
-];
+]
 
 function HomePage() {
   return (
@@ -90,7 +90,7 @@ function HomePage() {
 
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <Heading size={"7"} align={"center"}>
+            <Heading size={'7'} align={'center'}>
               Our Nursing Programs
             </Heading>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
@@ -193,5 +193,5 @@ function HomePage() {
         </section>
       </main>
     </div>
-  );
+  )
 }

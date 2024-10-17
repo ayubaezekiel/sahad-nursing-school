@@ -1,11 +1,11 @@
-import FacultyPage from "@/components/Faculty";
-import { image_url } from "@/lib/constants";
-import { Button } from "@radix-ui/themes";
-import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
+import { ContactPage } from '@/components/ContactUs'
+import { image_url } from '@/lib/constants'
+import { Button } from '@radix-ui/themes'
+import { createFileRoute } from '@tanstack/react-router'
+import { motion } from 'framer-motion'
+import { ChevronDown, Mail, MapPin, Phone } from 'lucide-react'
 
-export const Route = createFileRoute("/faculty")({
+export const Route = createFileRoute('/_layout/contact')({
   component: () => (
     <div>
       <div className="relative bg-orange-600 overflow-hidden">
@@ -55,8 +55,8 @@ export const Route = createFileRoute("/faculty")({
                 size="4"
                 className="bg-white text-orange-600 hover:bg-orange-100"
                 onClick={() => {
-                  const contactForm = document.getElementById("contact-form");
-                  contactForm?.scrollIntoView({ behavior: "smooth" });
+                  const contactForm = document.getElementById('contact-form')
+                  contactForm?.scrollIntoView({ behavior: 'smooth' })
                 }}
               >
                 Contact Us Now
@@ -80,7 +80,8 @@ export const Route = createFileRoute("/faculty")({
           </motion.div>
         </div>
       </div>
-      <FacultyPage />
+
+      <ContactPage />
     </div>
   ),
-});
+})

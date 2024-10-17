@@ -1,11 +1,12 @@
-import { ContactPage } from "@/components/ContactUs";
+import { FacilitiesGallery } from "@/components/Facility";
+import FacultyPage from "@/components/Faculty";
 import { image_url } from "@/lib/constants";
 import { Button } from "@radix-ui/themes";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 
-export const Route = createFileRoute("/contact")({
+export const Route = createFileRoute("/_layout/faculty")({
   component: () => (
     <div>
       <div className="relative bg-orange-600 overflow-hidden">
@@ -80,8 +81,8 @@ export const Route = createFileRoute("/contact")({
           </motion.div>
         </div>
       </div>
-
-      <ContactPage />
+      <FacultyPage />
+      <FacilitiesGallery />
     </div>
   ),
 });
