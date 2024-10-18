@@ -32,10 +32,13 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <p className="text-gray-300">
-              123 Nursing Avenue, Healthcare City, HC 12345
+              Sahad Hospital, Plot 1756 Cadastral Zone E27, APo Resettlement.
+              Opposite Amazing Grace Plaza
             </p>
             <p className="text-gray-300">Phone: (123) 456-7890</p>
-            <p className="text-gray-300">Email: info@sahadnursing.edu</p>
+            <p className="text-gray-300">
+              Email: info@sahadcollegeonursing.org
+            </p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">

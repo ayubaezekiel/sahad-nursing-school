@@ -1,11 +1,11 @@
-import { ContactPage } from '@/components/ContactUs'
-import { image_url } from '@/lib/constants'
-import { Button } from '@radix-ui/themes'
-import { createFileRoute } from '@tanstack/react-router'
-import { motion } from 'framer-motion'
-import { ChevronDown, Mail, MapPin, Phone } from 'lucide-react'
+import { ContactPage } from "@/components/ContactUs";
+import { image_url } from "@/lib/constants";
+import { Button } from "@radix-ui/themes";
+import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 
-export const Route = createFileRoute('/_layout/contact')({
+export const Route = createFileRoute("/_layout/contact")({
   component: () => (
     <div>
       <div className="relative bg-orange-600 overflow-hidden">
@@ -42,8 +42,9 @@ export const Route = createFileRoute('/_layout/contact')({
                 <Mail className="mr-2" /> info@sahadnursing.edu.ng
               </p>
               <p className="flex items-center justify-center lg:justify-start">
-                <MapPin className="mr-2" /> 123 Nursing Avenue, Education
-                District, Lagos, Nigeria
+                <MapPin className="mr-2" />
+                Sahad Hospital, Plot 1756 Cadastral Zone E27, APo Resettlement,
+                Abuja Nigeria
               </p>
             </motion.div>
             <motion.div
@@ -55,8 +56,8 @@ export const Route = createFileRoute('/_layout/contact')({
                 size="4"
                 className="bg-white text-orange-600 hover:bg-orange-100"
                 onClick={() => {
-                  const contactForm = document.getElementById('contact-form')
-                  contactForm?.scrollIntoView({ behavior: 'smooth' })
+                  const contactForm = document.getElementById("contact-form");
+                  contactForm?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
                 Contact Us Now
@@ -84,4 +85,4 @@ export const Route = createFileRoute('/_layout/contact')({
       <ContactPage />
     </div>
   ),
-})
+});

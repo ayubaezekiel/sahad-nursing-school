@@ -43,8 +43,8 @@ export const Route = createFileRoute("/_layout/faculty")({
                 <Mail className="mr-2" /> info@sahadnursing.edu.ng
               </p>
               <p className="flex items-center justify-center lg:justify-start">
-                <MapPin className="mr-2" /> 123 Nursing Avenue, Education
-                District, Lagos, Nigeria
+                <MapPin className="mr-2" /> Sahad Hospital, Plot 1756 Cadastral
+                Zone E27, APo Resettlement
               </p>
             </motion.div>
             <motion.div

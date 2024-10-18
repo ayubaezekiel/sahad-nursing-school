@@ -3,63 +3,63 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion'
-import { CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { image_url } from '@/lib/constants'
-import { Button, Card, Separator } from '@radix-ui/themes'
-import { createFileRoute, Link } from '@tanstack/react-router'
+} from "@/components/ui/accordion";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { image_url } from "@/lib/constants";
+import { Button, Card, Separator } from "@radix-ui/themes";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { ArrowRight, InfoIcon } from 'lucide-react'
+import { ArrowRight, InfoIcon } from "lucide-react";
 
 //SCN/YEAR/0001
 type ApplyTypes = {
-  form_id: string
-  evidence_of_payment: string
-  passport: string
-  surname: string
-  first_name: string
-  middle_name: string
-  applicant_phone_number: string
-  applicant_email_address: string
-  sex: string
-  marital_status: string
-  date_of_birth: string
-  home_town: string
-  country: string
-  state: string
-  local_gov_area: string
-  parmanent_home_address: string
-  name_of_next_of_kin: string
-  address_of_next_of_kin: string
-  next_of_kin_phone_number: string
-  school_name: string
-  date_from: string
-  date_to: string
-  qualification: string
-  exam_type: string
-  year_of_exam: string
-  exam_number: string
-  no_of_sittings: number
+  form_id: string;
+  evidence_of_payment: string;
+  passport: string;
+  surname: string;
+  first_name: string;
+  middle_name: string;
+  applicant_phone_number: string;
+  applicant_email_address: string;
+  sex: string;
+  marital_status: string;
+  date_of_birth: string;
+  home_town: string;
+  country: string;
+  state: string;
+  local_gov_area: string;
+  parmanent_home_address: string;
+  name_of_next_of_kin: string;
+  address_of_next_of_kin: string;
+  next_of_kin_phone_number: string;
+  school_name: string;
+  date_from: string;
+  date_to: string;
+  qualification: string;
+  exam_type: string;
+  year_of_exam: string;
+  exam_number: string;
+  no_of_sittings: number;
   grade: {
-    maths: string
-    english: string
-    chemistry: string
-    biology: string
-    physics: string
-  }
+    maths: string;
+    english: string;
+    chemistry: string;
+    biology: string;
+    physics: string;
+  };
   referees: {
-    full_name: string
-    address: string
-  }
-}
+    full_name: string;
+    address: string;
+  };
+};
 
-export const Route = createFileRoute('/_layout/apply/')({
+export const Route = createFileRoute("/_layout/apply/")({
   component: () => (
     <div>
       <Apply />
     </div>
   ),
-})
+});
 
 const Apply = () => {
   return (
@@ -108,8 +108,8 @@ const Apply = () => {
         <FormInstructions />
       </div>
     </div>
-  )
-}
+  );
+};
 
 function FormInstructions() {
   return (
@@ -126,6 +126,24 @@ function FormInstructions() {
           application form.
         </p>
         <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="procedure">
+            <AccordionTrigger>
+              Procedure before filling the form
+            </AccordionTrigger>
+            <AccordionContent forceMount>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>
+                  Deposit the sum of N2000(Non refundabe) into{" "}
+                  <li>Account Name:</li>
+                  <li>Acount No.:</li>
+                  <li>Bank:</li>
+                </li>
+                <li>
+                  Upload the evidenve of payment at the last section of the form
+                </li>
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
           <AccordionItem value="general">
             <AccordionTrigger>General Instructions</AccordionTrigger>
             <AccordionContent>
@@ -217,16 +235,16 @@ function FormInstructions() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <Separator size={'4'} className="my-4" />
+        <Separator size={"4"} className="my-4" />
         <p className="text-sm text-muted-foreground mb-4">
           If you have any questions or encounter any issues while filling out
           the form, please contact our admissions office at
           admissions@sahadnursing.edu or call +1234567890.
         </p>
-        <Button asChild size={'4'}>
+        <Button asChild size={"4"}>
           <Link to="/apply/apply/start"> Begin Application</Link>
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

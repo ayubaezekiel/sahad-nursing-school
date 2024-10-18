@@ -40,12 +40,12 @@ interface Program {
 
 const programs: Program[] = [
   {
-    name: "Bachelor of Science in Nursing",
-    degree: "BSN",
+    name: "Diploma in Basic Nursing",
+    degree: "DBN",
     duration: "4 years",
-    startDates: ["September", "January"],
+    startDates: ["Movember", "December"],
     description:
-      "Our BSN program prepares students for a rewarding career in nursing, providing comprehensive knowledge and hands-on clinical experience.",
+      "Our DBN program prepares students for a rewarding career in nursing, providing comprehensive knowledge and hands-on clinical experience.",
     courses: [
       "Anatomy and Physiology",
       "Fundamentals of Nursing",
@@ -62,14 +62,14 @@ const programs: Program[] = [
       "Nurse Educator",
       "Research Nurse",
     ],
-    applicationFee: 10000,
-    tuitionFee: 500000,
+    applicationFee: 20000,
+    tuitionFee: 20000,
   },
   {
-    name: "Diploma in Midwifery",
+    name: "Diploma in Basic Midwifery",
     degree: "DM",
     duration: "3 years",
-    startDates: ["September"],
+    startDates: ["Coming Soon"],
     description:
       "Our Diploma in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
     courses: [
@@ -88,34 +88,8 @@ const programs: Program[] = [
       "Lactation Specialist",
       "Midwifery Educator",
     ],
-    applicationFee: 8000,
+    applicationFee: 20000,
     tuitionFee: 400000,
-  },
-  {
-    name: "Master of Science in Nursing",
-    degree: "MSN",
-    duration: "2 years",
-    startDates: ["September", "January"],
-    description:
-      "Our MSN program is designed for registered nurses seeking advanced practice roles, leadership positions, or a career in nursing education.",
-    courses: [
-      "Advanced Health Assessment",
-      "Advanced Pathophysiology",
-      "Advanced Pharmacology",
-      "Nursing Research Methods",
-      "Healthcare Policy and Ethics",
-      "Nursing Leadership and Management",
-      "Advanced Clinical Practice",
-    ],
-    careerProspects: [
-      "Advanced Practice Registered Nurse",
-      "Nurse Administrator",
-      "Clinical Nurse Specialist",
-      "Nurse Educator",
-      "Healthcare Consultant",
-    ],
-    applicationFee: 15000,
-    tuitionFee: 750000,
   },
 ];
 
@@ -164,7 +138,9 @@ const ProgramCard: React.FC<{ program: Program }> = ({ program }) => (
           Tuition Fee: ₦{program.tuitionFee.toLocaleString()}/year
         </p>
       </div>
-      <Button>Apply Now</Button>
+      <Button>
+        <Link href="/apply">Apply Now</Link>
+      </Button>
     </CardFooter>
   </Card>
 );
@@ -195,8 +171,8 @@ export function ProgramsPage() {
         <Tabs.Root defaultValue="all" className="mb-12">
           <Tabs.List className="grid w-full grid-cols-3 mb-8">
             <Tabs.Trigger value="all">All Programs</Tabs.Trigger>
+            <Tabs.Trigger value="all">Diploma</Tabs.Trigger>
             <Tabs.Trigger value="undergraduate">Undergraduate</Tabs.Trigger>
-            <Tabs.Trigger value="postgraduate">Postgraduate</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="all">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -215,23 +191,7 @@ export function ProgramsPage() {
           <Tabs.Content value="undergraduate">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {programs
-                .filter((p) => p.degree === "BSN" || p.degree === "DM")
-                .map((program, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <ProgramCard program={program} />
-                  </motion.div>
-                ))}
-            </div>
-          </Tabs.Content>
-          <Tabs.Content value="postgraduate">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {programs
-                .filter((p) => p.degree === "MSN")
+                .filter((p) => p.degree === "BSN" || p.degree === "UM")
                 .map((program, index) => (
                   <motion.div
                     key={index}
@@ -255,11 +215,11 @@ export function ProgramsPage() {
           <h2 className="text-2xl font-bold mb-4">Application Process</h2>
           <ol className="list-decimal pl-5 space-y-2">
             <li>Review the admission requirements for your chosen program.</li>
-            <li>Complete the online application form.</li>
             <li>Pay the non-refundable application fee.</li>
+            <li>Complete the online application form.</li>
             <li>
-              Submit all required documents, including transcripts and letters
-              of recommendation.
+              Submit all required documents, including transcripts, letters of
+              recommendation and the online application print out.
             </li>
             <li>
               Take any required entrance exams or interviews as specified by
@@ -268,15 +228,12 @@ export function ProgramsPage() {
             <li>
               Wait for the admissions committee to review your application.
             </li>
-            <li>Receive your admission decision via email.</li>
+            <li>Receive your admission decision via email and |SMS.</li>
           </ol>
           <div className="mt-6 flex items-center justify-between">
             <div className="flex items-center">
               <Calendar className="mr-2 h-5 w-5 text-orange-600" />
-              <span>
-                Application Deadlines: July 31 (September intake), November 30
-                (January intake)
-              </span>
+              <span>Application Deadlines: November 30 (December intake) </span>
             </div>
             <Button>
               <Link href="/apply">Start Your Application</Link>

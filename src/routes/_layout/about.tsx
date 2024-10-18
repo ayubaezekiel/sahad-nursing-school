@@ -1,16 +1,17 @@
-import * as React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
-import MissionVisionProvost from '@/components/MissionAndVision'
-import { motion } from 'framer-motion'
-import { Button, Card } from '@radix-ui/themes'
-import { Award, ChevronRight, GraduationCap, Users } from 'lucide-react'
-import { PrincipalOfficers } from '@/components/PrincipalOfficers'
-import { HeadsOfUnits } from '@/components/HeadsOfUnit'
-import { CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import * as React from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import MissionVisionProvost from "@/components/MissionAndVision";
+import { motion } from "framer-motion";
+import { Button, Card } from "@radix-ui/themes";
+import { Award, ChevronRight, GraduationCap, Users } from "lucide-react";
+import { PrincipalOfficers } from "@/components/PrincipalOfficers";
+import { HeadsOfUnits } from "@/components/HeadsOfUnit";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_layout/about')({
+export const Route = createFileRoute("/_layout/about")({
   component: AboutComponent,
-})
+});
 
 function AboutComponent() {
   return (
@@ -22,39 +23,39 @@ function AboutComponent() {
               className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
               animate={{
                 scale: [1, 1.1, 1],
-                x: ['-50%', '-45%', '-55%', '-50%'],
-                y: ['-50%', '-55%', '-45%', '-50%'],
+                x: ["-50%", "-45%", "-55%", "-50%"],
+                y: ["-50%", "-55%", "-45%", "-50%"],
               }}
               transition={{
                 duration: 20,
                 repeat: Infinity,
-                repeatType: 'reverse',
+                repeatType: "reverse",
               }}
             />
             <motion.div
               className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
               animate={{
                 scale: [1, 1.2, 1],
-                x: ['-50%', '-55%', '-45%', '-50%'],
-                y: ['-50%', '-45%', '-55%', '-50%'],
+                x: ["-50%", "-55%", "-45%", "-50%"],
+                y: ["-50%", "-45%", "-55%", "-50%"],
               }}
               transition={{
                 duration: 18,
                 repeat: Infinity,
-                repeatType: 'reverse',
+                repeatType: "reverse",
               }}
             />
             <motion.div
               className="absolute top-3/4 left-3/4 w-[700px] h-[700px] bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
               animate={{
                 scale: [1, 1.1, 0.9, 1],
-                x: ['-50%', '-45%', '-55%', '-50%'],
-                y: ['-50%', '-55%', '-45%', '-50%'],
+                x: ["-50%", "-45%", "-55%", "-50%"],
+                y: ["-50%", "-55%", "-45%", "-50%"],
               }}
               transition={{
                 duration: 22,
                 repeat: Infinity,
-                repeatType: 'reverse',
+                repeatType: "reverse",
               }}
             />
           </div>
@@ -86,7 +87,7 @@ function AboutComponent() {
               className="text-xl mb-8 text-orange-100"
             >
               Nurturing compassionate and skilled healthcare professionals since
-              2005
+              2023
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -95,19 +96,19 @@ function AboutComponent() {
               className="flex flex-wrap justify-center gap-4 mb-12"
             >
               <Button
-                size={'4'}
+                size={"4"}
                 className="bg-white text-orange-600 hover:bg-orange-100 transition-colors duration-300"
               >
-                Our Programs
+                <Link href="/programs">Our Programs</Link>
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
-                style={{ background: 'white' }}
-                size={'4'}
+                style={{ background: "white" }}
+                size={"4"}
                 className="bg-transparent hover:bg-white hover:text-orange-600 transition-colors duration-300"
               >
-                Contact Us
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </motion.div>
           </div>
@@ -173,21 +174,21 @@ function AboutComponent() {
         {[
           {
             icon: <GraduationCap className="h-10 w-10 mb-4" />,
-            title: 'Accredited Programs',
+            title: "Accredited Programs",
             description:
-              'Recognized by the Nursing and Midwifery Council of Nigeria',
+              "Recognized by the Nursing and Midwifery Council of Nigeria",
           },
           {
             icon: <Users className="h-10 w-10 mb-4" />,
-            title: 'Expert Faculty',
+            title: "Expert Faculty",
             description:
-              'Learn from experienced nursing professionals and educators',
+              "Learn from experienced nursing professionals and educators",
           },
           {
             icon: <Award className="h-10 w-10 mb-4" />,
-            title: 'State-of-the-Art Facilities',
+            title: "State-of-the-Art Facilities",
             description:
-              'Modern classrooms and simulation labs for hands-on learning',
+              "Modern classrooms and simulation labs for hands-on learning",
           },
         ].map((feature, index) => (
           <motion.div
@@ -207,5 +208,5 @@ function AboutComponent() {
       <PrincipalOfficers />
       <HeadsOfUnits />
     </section>
-  )
+  );
 }
