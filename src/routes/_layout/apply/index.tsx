@@ -131,12 +131,12 @@ function FormInstructions() {
               Procedure before filling the form
             </AccordionTrigger>
             <AccordionContent forceMount>
-              <ul className="list-disc pl-5 space-y-1">
+              <ul className="list-disc pl-5 space-y-1 text-xl">
                 <li>
-                  Deposit the sum of N2000(Non refundabe) into{" "}
-                  <li>Account Name:</li>
-                  <li>Acount No.:</li>
-                  <li>Bank:</li>
+                  Deposit the sum of N10,000(Non refundabe) into
+                  <li>Account Name:SAHAD HOSPITAL BILLING ACCOUNT</li>
+                  <li>Acount No.:1311057352</li>
+                  <li>Bank:ZENITH BANK</li>
                 </li>
                 <li>
                   Upload the evidenve of payment at the last section of the form
@@ -239,7 +239,7 @@ function FormInstructions() {
         <p className="text-sm text-muted-foreground mb-4">
           If you have any questions or encounter any issues while filling out
           the form, please contact our admissions office at
-          admissions@sahadnursing.edu or call +1234567890.
+          info@sahadcollegeonursing.org or call +2347070111111.
         </p>
         <Button asChild size={"4"}>
           <Link to="/apply/apply/start"> Begin Application</Link>

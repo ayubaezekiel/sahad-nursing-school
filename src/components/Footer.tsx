@@ -35,7 +35,7 @@ export function Footer() {
               Sahad Hospital, Plot 1756 Cadastral Zone E27, APo Resettlement.
               Opposite Amazing Grace Plaza
             </p>
-            <p className="text-gray-300">Phone: (123) 456-7890</p>
+            <p className="text-gray-300">Phone: (+234)7070111111</p>
             <p className="text-gray-300">
               Email: info@sahadcollegeonursing.org
             </p>
