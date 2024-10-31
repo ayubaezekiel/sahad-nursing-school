@@ -43,16 +43,14 @@ export function Login() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { admin, token } = await pb.admins.authWithPassword(
-      values.email,
-      values.password
-    );
-    console.log(admin, toast, values);
+    const { token, record } = await pb
+      .collection("users")
+      .authWithPassword(values.email, values.password);
 
     if (token) {
       toast({
-        title: admin.email,
-        description: `${admin.email} loggged in successfully`,
+        title: record?.email,
+        description: `${record?.email} loggged in successfully`,
       });
       navigate({ to: "/admin/dashboard", replace: true });
     }
