@@ -182,15 +182,15 @@ export function ContactPage() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="text-orange-600" />
-                  <span>+234 123 456 7890</span>
+                  <span>+2347070111111</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="text-orange-600" />
-                  <span>info@sahadnursing.edu.ng</span>
+                  <span>info@sahadcollegeonursing.org</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="text-orange-600" />
-                  <span>Monday - Friday: 8:00 AM - 5:00 PM</span>
+                  <span>Monday - Sunday: 00:00 AM - 11:59 PM</span>
                 </div>
               </CardContent>
             </Card>

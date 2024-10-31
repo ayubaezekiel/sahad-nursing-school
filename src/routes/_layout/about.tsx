@@ -125,41 +125,30 @@ function AboutComponent() {
             </CardHeader>
             <CardContent className="text-center">
               <p className="mb-4">
-                Sahad College of Nursing was founded in 2005 with a vision to
-                address the growing healthcare needs of our community and the
-                nation at large. What began as a small nursing school has since
-                blossomed into a prestigious institution known for producing
-                some of the most competent and compassionate nurses in Nigeria.
+                Founded in 2023, Sahad College of Nursing is dedicated to
+                addressing Nigeria’s healthcare needs by training skilled,
+                compassionate nurses. Though young, the college has quickly
+                built a reputation for excellence, combining a rigorous
+                curriculum with state-of-the-art simulation labs that provide
+                hands-on experience. Students receive a blend of theoretical and
+                practical knowledge, ensuring they graduate with both technical
+                skills and the ability to deliver empathetic care.
               </p>
               <p className="mb-4">
-                In our early years, we focused on providing basic nursing
-                education to a small cohort of dedicated students. As we grew,
-                so did our programs and facilities. By 2010, we had expanded our
-                curriculum to include specialized courses in midwifery and
-                public health nursing.
+                Sahad’s curriculum includes foundational nursing education along
+                with specialized tracks in midwifery and public health nursing,
+                aligning with the nation’s healthcare priorities. The college's
+                faculty, comprised of experienced professionals, support an
+                inclusive and collaborative environment, promoting a culture of
+                mutual respect and cultural competence.
               </p>
               <p className="mb-4">
-                The year 2015 marked a significant milestone as we received full
-                accreditation from the Nursing and Midwifery Council of Nigeria
-                for all our programs. This recognition propelled us to further
-                heights, allowing us to introduce postgraduate programs and
-                establish partnerships with leading healthcare institutions
-                across the country.
-              </p>
-              <p className="mb-4">
-                Today, Sahad College of Nursing stands as a beacon of excellence
-                in nursing education. Our state-of-the-art simulation labs,
-                diverse student body, and highly qualified faculty continue to
-                set us apart. We've graduated over 5,000 nurses who are making
-                significant contributions to healthcare delivery in Nigeria and
-                beyond.
-              </p>
-              <p>
-                As we look to the future, we remain committed to our founding
-                principles of compassion, excellence, and integrity. We continue
-                to evolve, embracing new technologies and pedagogies to ensure
-                our graduates are well-prepared to meet the challenges of modern
-                healthcare.
+                Sahad College graduates are already making a positive impact in
+                the healthcare field, reflecting the institution’s commitment to
+                excellence and integrity. As it grows, Sahad aims to remain a
+                leader in nursing education by integrating new technologies and
+                best practices, preparing future healthcare leaders who will
+                contribute meaningfully to Nigerian and global healthcare.
               </p>
             </CardContent>
           </Card>

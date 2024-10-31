@@ -4,6 +4,7 @@ import { Button } from "@radix-ui/themes";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
+import front from "../../assets/front.jpg";
 
 export const Route = createFileRoute("/_layout/contact")({
   component: () => (
@@ -73,7 +74,7 @@ export const Route = createFileRoute("/_layout/contact")({
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <img
-              src={image_url}
+              src={front}
               alt="Nursing students at Sahad College"
               width={600}
               height={600}

@@ -5,6 +5,7 @@ import { Button } from "@radix-ui/themes";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
+import serv from "../../assets/serv.jpg";
 
 export const Route = createFileRoute("/_layout/faculty")({
   component: () => (
@@ -37,10 +38,10 @@ export const Route = createFileRoute("/_layout/faculty")({
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <p className="flex items-center justify-center lg:justify-start">
-                <Phone className="mr-2" /> +234 123 456 7890
+                <Phone className="mr-2" /> +234 7070111111
               </p>
               <p className="flex items-center justify-center lg:justify-start">
-                <Mail className="mr-2" /> info@sahadnursing.edu.ng
+                <Mail className="mr-2" /> info@sahadcollegeofnursing.org
               </p>
               <p className="flex items-center justify-center lg:justify-start">
                 <MapPin className="mr-2" /> Sahad Hospital, Plot 1756 Cadastral
@@ -72,7 +73,7 @@ export const Route = createFileRoute("/_layout/faculty")({
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <img
-              src={image_url}
+              src={serv}
               alt="Nursing students at Sahad College"
               width={600}
               height={600}

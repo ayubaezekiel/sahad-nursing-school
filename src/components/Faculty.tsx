@@ -282,7 +282,7 @@ export default function FacultyPage() {
             Resources department.
           </p>
           <a
-            href="mailto:hr@sahadnursing.edu.ng"
+            href="mailto:info@sahadcollegeofnursing.org"
             className="text-orange-600 hover:text-orange-800 font-semibold"
           >
             Contact HR about Faculty Positions
