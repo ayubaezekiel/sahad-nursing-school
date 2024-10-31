@@ -4,13 +4,14 @@ import { Link } from "@tanstack/react-router";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 
+import logo from "../assets/logo.png";
 export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-orange-600">SNC</span>
+            <img src={logo} alt="" className="w-48" />
           </Link>
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item) => (
