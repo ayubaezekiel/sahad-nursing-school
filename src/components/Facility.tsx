@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@radix-ui/themes";
+import lab from "../assets/lab.jpg";
 
 interface Facility {
   id: number;
@@ -43,7 +44,7 @@ const facilities: Facility[] = [
   {
     id: 4,
     name: "Skills Practice Lab",
-    image: "/placeholder.svg?height=400&width=400",
+    image: lab,
     description:
       "A dedicated space for students to practice and refine their clinical skills, equipped with hospital beds, medical supplies, and anatomical models. This lab allows students to perfect their techniques in a safe, supervised environment before applying them in real clinical settings.",
   },
