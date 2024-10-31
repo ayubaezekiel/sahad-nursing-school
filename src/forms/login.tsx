@@ -43,16 +43,23 @@ export function Login() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { token, record } = await pb
-      .collection("users")
-      .authWithPassword(values.email, values.password);
+    try {
+      const { token, record } = await pb
+        .collection("users")
+        .authWithPassword(values.email, values.password);
 
-    if (token) {
-      toast({
-        title: record?.email,
-        description: `${record?.email} loggged in successfully`,
+      if (token) {
+        toast({
+          title: record?.email,
+          description: `${record?.email} loggged in successfully`,
+        });
+        navigate({ to: "/admin/dashboard", replace: true });
+      }
+    } catch (error) {
+      throw toast({
+        title: "Error",
+        description: `${error}`,
       });
-      navigate({ to: "/admin/dashboard", replace: true });
     }
   }
 
