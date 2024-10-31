@@ -1,32 +1,40 @@
-import React from "react";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button, Card, Select, TextArea, TextField } from "@radix-ui/themes";
+import { MyDocument } from "@/components/pdfs/ApplicationPdf";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { PlusCircle, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/hooks/use-toast";
+import pb from "@/lib/pocketbase";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Card, Select, TextArea, TextField } from "@radix-ui/themes";
+import { pdf } from "@react-pdf/renderer";
+import { format } from "date-fns";
+import { PlusCircle, Trash2, Upload } from "lucide-react";
+import { useFieldArray, useForm } from "react-hook-form";
+import * as z from "zod";
 
-const formSchema = z.object({
-  evidence_of_payment: z.string().min(1, "Evidence of payment is required"),
-  passport: z.string().min(1, "Passport is required"),
+export const applicationFormSchema = z.object({
+  evidence_of_payment: z.any({ message: "upload evidence of payment" }),
+  passport: z.instanceof(File).refine((file) => file.size <= 1000000, {
+    message: "Passport photo must be less than 1MB",
+  }),
   surname: z.string().min(1, "Surname is required"),
   first_name: z.string().min(1, "First name is required"),
   middle_name: z.string().optional(),
-  applicant_phone_number: z.string().min(1, "Phone number is required"),
+  applicant_phone_number: z
+    .string()
+    .min(11, "Phone number must be 11 characters")
+    .max(11, "phone number must not be more than 11 characters"),
   applicant_email_address: z.string().email("Invalid email address"),
   sex: z.enum(["MALE", "FEMALE"]),
-  marital_status: z.enum(["SINGLE", "MARRIED", "DEVORSED", "WIDOW"]),
-  date_of_birth: z.date(),
+  marital_status: z.enum(["SINGLE", "MARRIED", "DIVORCED", "WIDOW"]),
+  date_of_birth: z.string(),
   home_town: z.string().min(1, "Home town is required"),
   country: z.string().min(1, "Country is required"),
   state: z.string().min(1, "State is required"),
@@ -40,10 +48,11 @@ const formSchema = z.object({
     .min(1, "Address of next of kin is required"),
   next_of_kin_phone_number: z
     .string()
-    .min(1, "Next of kin phone number is required"),
+    .min(11, "Phone number must be 11 characters")
+    .max(11, "phone number must not be more than 11 characters"),
   school_name: z.string().min(1, "School name is required"),
-  date_from: z.date(),
-  date_to: z.date(),
+  date_from: z.string(),
+  date_to: z.string(),
   qualification: z.string().min(1, "Qualification is required"),
   year_of_exam: z.string().min(1, "Year of exam is required"),
   no_of_sittings: z.enum(["1", "2"]),
@@ -63,11 +72,11 @@ const formSchema = z.object({
   ),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof applicationFormSchema>;
 
 export function ApplicationForm() {
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(applicationFormSchema),
     defaultValues: {
       subjects: [{ exam_type: "", exam_number: "", name: "", grade: "" }],
       referees: [{ full_name: "", address: "" }],
@@ -92,9 +101,57 @@ export function ApplicationForm() {
     name: "referees",
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // Here you would typically send the data to your backend
+  const onSubmit = async (data: FormValues) => {
+    const response = await pb.collection("application_form").create(data);
+
+    if (response.created) {
+      // Generate PDF
+      const pdfDoc = (
+        <MyDocument
+          formData={{
+            passport: data.passport,
+            applicationNumber: response.id,
+            dateOfBirth: format(data.date_of_birth, "PP p"),
+            email: data.applicant_email_address,
+            localGovernment: data.local_gov_area,
+            name: `${data.first_name} ${data.middle_name ?? ""} ${data.surname}`.toUpperCase(),
+            nokPhoneNumber: data.next_of_kin_phone_number,
+            phoneNumber: data.applicant_phone_number,
+            sex: data.sex,
+            state: data.state,
+            subjects: data.subjects,
+            no_of_sittings: data.no_of_sittings,
+          }}
+        />
+      );
+      const blob = await pdf(pdfDoc).toBlob();
+      // Create a URL for the blob
+      const url = URL.createObjectURL(blob);
+
+      // Create a temporary anchor element and trigger download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${data.first_name}_${data.middle_name ?? ""}_${data.surname}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toast({
+        title: "Success",
+        description: "Application submitted successfully",
+      });
+
+      form.reset();
+    } else {
+      toast({
+        title: "Error",
+        description: "Sorry, an error occured, please try again",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -655,12 +712,17 @@ export function ApplicationForm() {
                 <FormItem>
                   <FormLabel>Evidence of Payment</FormLabel>
                   <FormControl>
-                    <Input
-                      type="file"
-                      {...field}
-                      value={undefined}
-                      onChange={(e) => field.onChange(e.target.files?.[0])}
-                    />
+                    <div className="relative">
+                      <Upload className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                      <Input
+                        id="file-input"
+                        type="file"
+                        {...field}
+                        value={undefined}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="pl-8 cursor-pointer file:cursor-pointer"
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -673,12 +735,17 @@ export function ApplicationForm() {
                 <FormItem>
                   <FormLabel>Passport Photograph</FormLabel>
                   <FormControl>
-                    <Input
-                      type="file"
-                      {...field}
-                      value={undefined}
-                      onChange={(e) => field.onChange(e.target.files?.[0])}
-                    />
+                    <div className="relative">
+                      <Upload className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                      <Input
+                        id="file-input"
+                        type="file"
+                        {...field}
+                        value={undefined}
+                        onChange={(e) => field.onChange(e.target.files?.[0])}
+                        className="pl-8 cursor-pointer file:cursor-pointer"
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -687,7 +754,7 @@ export function ApplicationForm() {
           </CardContent>
         </Card>
 
-        <Button type="submit" size={"4"}>
+        <Button loading={form.formState.isSubmitting} type="submit" size={"4"}>
           Submit Application
         </Button>
       </form>

@@ -7,6 +7,7 @@ import {
 import { Avatar, Badge, Card, Flex, Text } from "@radix-ui/themes";
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Linkedin, Mail } from "lucide-react";
+import ceo from "../assets/chairman.png";
 
 interface OfficerProps {
   fullName: string;
@@ -126,11 +127,11 @@ const OfficerCard: React.FC<OfficerProps> = ({
 
 const principalOfficers: OfficerProps[] = [
   {
-    fullName: "Dr. Aisha Nnamani",
-    designation: "Provost",
-    position: "Chief Executive Officer",
-    qualification: "Ph.D. in Nursing, M.Sc. in Healthcare Management",
-    imageUrl: "/placeholder.svg?height=128&width=128",
+    fullName: "Alh Ibrahim Mijinyawa",
+    designation: "Propriotor",
+    position: "Propriotor",
+    qualification: "...",
+    imageUrl: ceo,
     socialLinks: {
       facebook: "https://facebook.com/aishannamani",
       twitter: "https://twitter.com/aishannamani",
@@ -139,7 +140,7 @@ const principalOfficers: OfficerProps[] = [
     },
   },
   {
-    fullName: "Prof. Chukwuma Okafor",
+    fullName: "Dr Zagga",
     designation: "Deputy Provost",
     position: "Academic Affairs",
     qualification: "Ph.D. in Public Health, M.Sc. in Nursing Education",

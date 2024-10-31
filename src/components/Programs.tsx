@@ -42,7 +42,7 @@ const programs: Program[] = [
   {
     name: "Diploma in Basic Nursing",
     degree: "DBN",
-    duration: "4 years",
+    duration: "..",
     startDates: ["Movember", "December"],
     description:
       "Our DBN program prepares students for a rewarding career in nursing, providing comprehensive knowledge and hands-on clinical experience.",
@@ -62,13 +62,13 @@ const programs: Program[] = [
       "Nurse Educator",
       "Research Nurse",
     ],
-    applicationFee: 20000,
-    tuitionFee: 20000,
+    applicationFee: 10000,
+    tuitionFee: 10000,
   },
   {
     name: "Diploma in Basic Midwifery",
     degree: "DM",
-    duration: "3 years",
+    duration: "...",
     startDates: ["Coming Soon"],
     description:
       "Our Diploma in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
@@ -88,16 +88,16 @@ const programs: Program[] = [
       "Lactation Specialist",
       "Midwifery Educator",
     ],
-    applicationFee: 20000,
-    tuitionFee: 400000,
+    applicationFee: 10000,
+    tuitionFee: 100000,
   },
 ];
 
 const ProgramCard: React.FC<{ program: Program }> = ({ program }) => (
   <Card className="w-full">
-    <CardHeader>
+    <CardHeader className="flex flex-row justify-between items-center">
       <CardTitle>{program.name}</CardTitle>
-      <CardDescription>
+      <CardDescription className="flex">
         <Badge className="mr-2">{program.degree}</Badge>
         <span className="flex items-center text-sm text-gray-500">
           <Clock className="mr-1 h-4 w-4" /> {program.duration}
@@ -171,8 +171,7 @@ export function ProgramsPage() {
         <Tabs.Root defaultValue="all" className="mb-12">
           <Tabs.List className="grid w-full grid-cols-3 mb-8">
             <Tabs.Trigger value="all">All Programs</Tabs.Trigger>
-            <Tabs.Trigger value="all">Diploma</Tabs.Trigger>
-            <Tabs.Trigger value="undergraduate">Undergraduate</Tabs.Trigger>
+            <Tabs.Trigger value="diploma">Diploma</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="all">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -188,20 +187,18 @@ export function ProgramsPage() {
               ))}
             </div>
           </Tabs.Content>
-          <Tabs.Content value="undergraduate">
+          <Tabs.Content value="diploma">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {programs
-                .filter((p) => p.degree === "BSN" || p.degree === "UM")
-                .map((program, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <ProgramCard program={program} />
-                  </motion.div>
-                ))}
+              {programs.map((program, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <ProgramCard program={program} />
+                </motion.div>
+              ))}
             </div>
           </Tabs.Content>
         </Tabs.Root>
@@ -223,7 +220,7 @@ export function ProgramsPage() {
             </li>
             <li>
               Take any required entrance exams or interviews as specified by
-              your program.
+              your program. (ENTRANCE EXAM IS ON MONDAY 18TH NOVEMBER 2024)
             </li>
             <li>
               Wait for the admissions committee to review your application.
@@ -233,7 +230,7 @@ export function ProgramsPage() {
           <div className="mt-6 flex items-center justify-between">
             <div className="flex items-center">
               <Calendar className="mr-2 h-5 w-5 text-orange-600" />
-              <span>Application Deadlines: November 30 (December intake) </span>
+              <span>Application Deadlines: November 14 (January intake) </span>
             </div>
             <Button>
               <Link href="/apply">Start Your Application</Link>

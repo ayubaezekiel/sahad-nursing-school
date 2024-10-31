@@ -12,6 +12,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "@/hooks/use-toast";
+import pb from "@/lib/pocketbase";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Card, TextArea, TextField } from "@radix-ui/themes";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
@@ -44,9 +46,22 @@ export function ContactPage() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // This is where you would typically send the form data to your server
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { created } = await pb.collection("contacts").create(values);
+
+    if (created) {
+      form.reset();
+      return toast({
+        title: "Success",
+        description: "Message sent successfully",
+      });
+    } else {
+      throw toast({
+        title: "Error",
+        description: "Sorry, and error occured, please try again",
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -139,7 +154,12 @@ export function ContactPage() {
                       </FormItem>
                     )}
                   />
-                  <Button size={"4"} type="submit" className="w-full">
+                  <Button
+                    loading={form.formState.isSubmitting}
+                    size={"4"}
+                    type="submit"
+                    className="w-full"
+                  >
                     Send Message
                   </Button>
                 </form>

@@ -16,11 +16,14 @@ import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutProgramsImport } from './routes/_layout/programs'
 import { Route as LayoutFacultyImport } from './routes/_layout/faculty'
 import { Route as LayoutContactImport } from './routes/_layout/contact'
-import { Route as LayoutAdminImport } from './routes/_layout.admin'
 import { Route as LayoutAboutImport } from './routes/_layout/about'
 import { Route as LayoutApplyIndexImport } from './routes/_layout/apply/index'
 import { Route as LayoutAdminIndexImport } from './routes/_layout/admin/index'
+import { Route as LayoutAdminDashboardImport } from './routes/_layout.admin.dashboard'
+import { Route as LayoutAdminDashboardIndexImport } from './routes/_layout/admin/dashboard/index'
 import { Route as LayoutApplyApplyStartImport } from './routes/_layout/apply/apply.start'
+import { Route as LayoutAdminDashboardApplicationsImport } from './routes/_layout/admin/dashboard/applications'
+import { Route as LayoutAdminDashboardAnouncementsImport } from './routes/_layout/admin/dashboard/anouncements'
 
 // Create/Update Routes
 
@@ -49,11 +52,6 @@ const LayoutContactRoute = LayoutContactImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
-const LayoutAdminRoute = LayoutAdminImport.update({
-  path: '/admin',
-  getParentRoute: () => LayoutRoute,
-} as any)
-
 const LayoutAboutRoute = LayoutAboutImport.update({
   path: '/about',
   getParentRoute: () => LayoutRoute,
@@ -65,14 +63,36 @@ const LayoutApplyIndexRoute = LayoutApplyIndexImport.update({
 } as any)
 
 const LayoutAdminIndexRoute = LayoutAdminIndexImport.update({
+  path: '/admin/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutAdminDashboardRoute = LayoutAdminDashboardImport.update({
+  path: '/admin/dashboard',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutAdminDashboardIndexRoute = LayoutAdminDashboardIndexImport.update({
   path: '/',
-  getParentRoute: () => LayoutAdminRoute,
+  getParentRoute: () => LayoutAdminDashboardRoute,
 } as any)
 
 const LayoutApplyApplyStartRoute = LayoutApplyApplyStartImport.update({
   path: '/apply/apply/start',
   getParentRoute: () => LayoutRoute,
 } as any)
+
+const LayoutAdminDashboardApplicationsRoute =
+  LayoutAdminDashboardApplicationsImport.update({
+    path: '/applications',
+    getParentRoute: () => LayoutAdminDashboardRoute,
+  } as any)
+
+const LayoutAdminDashboardAnouncementsRoute =
+  LayoutAdminDashboardAnouncementsImport.update({
+    path: '/anouncements',
+    getParentRoute: () => LayoutAdminDashboardRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -90,13 +110,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof LayoutAboutImport
-      parentRoute: typeof LayoutImport
-    }
-    '/_layout/admin': {
-      id: '/_layout/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof LayoutAdminImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/contact': {
@@ -127,12 +140,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/admin/dashboard': {
+      id: '/_layout/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof LayoutAdminDashboardImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/admin/': {
       id: '/_layout/admin/'
-      path: '/'
-      fullPath: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
       preLoaderRoute: typeof LayoutAdminIndexImport
-      parentRoute: typeof LayoutAdminImport
+      parentRoute: typeof LayoutImport
     }
     '/_layout/apply/': {
       id: '/_layout/apply/'
@@ -141,6 +161,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutApplyIndexImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/admin/dashboard/anouncements': {
+      id: '/_layout/admin/dashboard/anouncements'
+      path: '/anouncements'
+      fullPath: '/admin/dashboard/anouncements'
+      preLoaderRoute: typeof LayoutAdminDashboardAnouncementsImport
+      parentRoute: typeof LayoutAdminDashboardImport
+    }
+    '/_layout/admin/dashboard/applications': {
+      id: '/_layout/admin/dashboard/applications'
+      path: '/applications'
+      fullPath: '/admin/dashboard/applications'
+      preLoaderRoute: typeof LayoutAdminDashboardApplicationsImport
+      parentRoute: typeof LayoutAdminDashboardImport
+    }
     '/_layout/apply/apply/start': {
       id: '/_layout/apply/apply/start'
       path: '/apply/apply/start'
@@ -148,41 +182,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutApplyApplyStartImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/admin/dashboard/': {
+      id: '/_layout/admin/dashboard/'
+      path: '/'
+      fullPath: '/admin/dashboard/'
+      preLoaderRoute: typeof LayoutAdminDashboardIndexImport
+      parentRoute: typeof LayoutAdminDashboardImport
+    }
   }
 }
 
 // Create and export the route tree
 
-interface LayoutAdminRouteChildren {
-  LayoutAdminIndexRoute: typeof LayoutAdminIndexRoute
+interface LayoutAdminDashboardRouteChildren {
+  LayoutAdminDashboardAnouncementsRoute: typeof LayoutAdminDashboardAnouncementsRoute
+  LayoutAdminDashboardApplicationsRoute: typeof LayoutAdminDashboardApplicationsRoute
+  LayoutAdminDashboardIndexRoute: typeof LayoutAdminDashboardIndexRoute
 }
 
-const LayoutAdminRouteChildren: LayoutAdminRouteChildren = {
-  LayoutAdminIndexRoute: LayoutAdminIndexRoute,
+const LayoutAdminDashboardRouteChildren: LayoutAdminDashboardRouteChildren = {
+  LayoutAdminDashboardAnouncementsRoute: LayoutAdminDashboardAnouncementsRoute,
+  LayoutAdminDashboardApplicationsRoute: LayoutAdminDashboardApplicationsRoute,
+  LayoutAdminDashboardIndexRoute: LayoutAdminDashboardIndexRoute,
 }
 
-const LayoutAdminRouteWithChildren = LayoutAdminRoute._addFileChildren(
-  LayoutAdminRouteChildren,
-)
+const LayoutAdminDashboardRouteWithChildren =
+  LayoutAdminDashboardRoute._addFileChildren(LayoutAdminDashboardRouteChildren)
 
 interface LayoutRouteChildren {
   LayoutAboutRoute: typeof LayoutAboutRoute
-  LayoutAdminRoute: typeof LayoutAdminRouteWithChildren
   LayoutContactRoute: typeof LayoutContactRoute
   LayoutFacultyRoute: typeof LayoutFacultyRoute
   LayoutProgramsRoute: typeof LayoutProgramsRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutAdminDashboardRoute: typeof LayoutAdminDashboardRouteWithChildren
+  LayoutAdminIndexRoute: typeof LayoutAdminIndexRoute
   LayoutApplyIndexRoute: typeof LayoutApplyIndexRoute
   LayoutApplyApplyStartRoute: typeof LayoutApplyApplyStartRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutAboutRoute: LayoutAboutRoute,
-  LayoutAdminRoute: LayoutAdminRouteWithChildren,
   LayoutContactRoute: LayoutContactRoute,
   LayoutFacultyRoute: LayoutFacultyRoute,
   LayoutProgramsRoute: LayoutProgramsRoute,
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutAdminDashboardRoute: LayoutAdminDashboardRouteWithChildren,
+  LayoutAdminIndexRoute: LayoutAdminIndexRoute,
   LayoutApplyIndexRoute: LayoutApplyIndexRoute,
   LayoutApplyApplyStartRoute: LayoutApplyApplyStartRoute,
 }
@@ -193,14 +239,17 @@ const LayoutRouteWithChildren =
 export interface FileRoutesByFullPath {
   '': typeof LayoutRouteWithChildren
   '/about': typeof LayoutAboutRoute
-  '/admin': typeof LayoutAdminRouteWithChildren
   '/contact': typeof LayoutContactRoute
   '/faculty': typeof LayoutFacultyRoute
   '/programs': typeof LayoutProgramsRoute
   '/': typeof LayoutIndexRoute
-  '/admin/': typeof LayoutAdminIndexRoute
+  '/admin/dashboard': typeof LayoutAdminDashboardRouteWithChildren
+  '/admin': typeof LayoutAdminIndexRoute
   '/apply': typeof LayoutApplyIndexRoute
+  '/admin/dashboard/anouncements': typeof LayoutAdminDashboardAnouncementsRoute
+  '/admin/dashboard/applications': typeof LayoutAdminDashboardApplicationsRoute
   '/apply/apply/start': typeof LayoutApplyApplyStartRoute
+  '/admin/dashboard/': typeof LayoutAdminDashboardIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -211,21 +260,27 @@ export interface FileRoutesByTo {
   '/': typeof LayoutIndexRoute
   '/admin': typeof LayoutAdminIndexRoute
   '/apply': typeof LayoutApplyIndexRoute
+  '/admin/dashboard/anouncements': typeof LayoutAdminDashboardAnouncementsRoute
+  '/admin/dashboard/applications': typeof LayoutAdminDashboardApplicationsRoute
   '/apply/apply/start': typeof LayoutApplyApplyStartRoute
+  '/admin/dashboard': typeof LayoutAdminDashboardIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_layout': typeof LayoutRouteWithChildren
   '/_layout/about': typeof LayoutAboutRoute
-  '/_layout/admin': typeof LayoutAdminRouteWithChildren
   '/_layout/contact': typeof LayoutContactRoute
   '/_layout/faculty': typeof LayoutFacultyRoute
   '/_layout/programs': typeof LayoutProgramsRoute
   '/_layout/': typeof LayoutIndexRoute
+  '/_layout/admin/dashboard': typeof LayoutAdminDashboardRouteWithChildren
   '/_layout/admin/': typeof LayoutAdminIndexRoute
   '/_layout/apply/': typeof LayoutApplyIndexRoute
+  '/_layout/admin/dashboard/anouncements': typeof LayoutAdminDashboardAnouncementsRoute
+  '/_layout/admin/dashboard/applications': typeof LayoutAdminDashboardApplicationsRoute
   '/_layout/apply/apply/start': typeof LayoutApplyApplyStartRoute
+  '/_layout/admin/dashboard/': typeof LayoutAdminDashboardIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -233,14 +288,17 @@ export interface FileRouteTypes {
   fullPaths:
     | ''
     | '/about'
-    | '/admin'
     | '/contact'
     | '/faculty'
     | '/programs'
     | '/'
-    | '/admin/'
+    | '/admin/dashboard'
+    | '/admin'
     | '/apply'
+    | '/admin/dashboard/anouncements'
+    | '/admin/dashboard/applications'
     | '/apply/apply/start'
+    | '/admin/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/about'
@@ -250,19 +308,25 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/apply'
+    | '/admin/dashboard/anouncements'
+    | '/admin/dashboard/applications'
     | '/apply/apply/start'
+    | '/admin/dashboard'
   id:
     | '__root__'
     | '/_layout'
     | '/_layout/about'
-    | '/_layout/admin'
     | '/_layout/contact'
     | '/_layout/faculty'
     | '/_layout/programs'
     | '/_layout/'
+    | '/_layout/admin/dashboard'
     | '/_layout/admin/'
     | '/_layout/apply/'
+    | '/_layout/admin/dashboard/anouncements'
+    | '/_layout/admin/dashboard/applications'
     | '/_layout/apply/apply/start'
+    | '/_layout/admin/dashboard/'
   fileRoutesById: FileRoutesById
 }
 
@@ -293,11 +357,12 @@ export const routeTree = rootRoute
       "filePath": "_layout.tsx",
       "children": [
         "/_layout/about",
-        "/_layout/admin",
         "/_layout/contact",
         "/_layout/faculty",
         "/_layout/programs",
         "/_layout/",
+        "/_layout/admin/dashboard",
+        "/_layout/admin/",
         "/_layout/apply/",
         "/_layout/apply/apply/start"
       ]
@@ -305,13 +370,6 @@ export const routeTree = rootRoute
     "/_layout/about": {
       "filePath": "_layout/about.tsx",
       "parent": "/_layout"
-    },
-    "/_layout/admin": {
-      "filePath": "_layout.admin.tsx",
-      "parent": "/_layout",
-      "children": [
-        "/_layout/admin/"
-      ]
     },
     "/_layout/contact": {
       "filePath": "_layout/contact.tsx",
@@ -329,17 +387,38 @@ export const routeTree = rootRoute
       "filePath": "_layout/index.tsx",
       "parent": "/_layout"
     },
+    "/_layout/admin/dashboard": {
+      "filePath": "_layout.admin.dashboard.tsx",
+      "parent": "/_layout",
+      "children": [
+        "/_layout/admin/dashboard/anouncements",
+        "/_layout/admin/dashboard/applications",
+        "/_layout/admin/dashboard/"
+      ]
+    },
     "/_layout/admin/": {
       "filePath": "_layout/admin/index.tsx",
-      "parent": "/_layout/admin"
+      "parent": "/_layout"
     },
     "/_layout/apply/": {
       "filePath": "_layout/apply/index.tsx",
       "parent": "/_layout"
     },
+    "/_layout/admin/dashboard/anouncements": {
+      "filePath": "_layout/admin/dashboard/anouncements.tsx",
+      "parent": "/_layout/admin/dashboard"
+    },
+    "/_layout/admin/dashboard/applications": {
+      "filePath": "_layout/admin/dashboard/applications.tsx",
+      "parent": "/_layout/admin/dashboard"
+    },
     "/_layout/apply/apply/start": {
       "filePath": "_layout/apply/apply.start.tsx",
       "parent": "/_layout"
+    },
+    "/_layout/admin/dashboard/": {
+      "filePath": "_layout/admin/dashboard/index.tsx",
+      "parent": "/_layout/admin/dashboard"
     }
   }
 }

@@ -1,9 +1,22 @@
 import { Footer } from "@/components/Footer";
 import { image_url } from "@/lib/constants";
-import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import {
+  Button,
+  Callout,
+  Card,
+  Container,
+  Dialog,
+  Flex,
+  Heading,
+  IconButton,
+  Text,
+} from "@radix-ui/themes";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRightIcon, ChevronRight } from "lucide-react";
+import { ArrowRightIcon, ChevronRight, X } from "lucide-react";
+import { useState } from "react";
+import bg from "../../assets/front.jpg";
+import why from "../../assets/why.jpg";
 
 export const Route = createFileRoute("/_layout/")({
   component: HomeComponent,
@@ -20,23 +33,54 @@ function HomeComponent() {
 const programs = [
   {
     name: "Diploma in Basic Nursing",
-    duration: "4 years",
+    duration: "..",
     description:
       "Comprehensive program preparing students for a wide range of nursing careers in various healthcare settings.",
   },
   {
     name: "Diploma in Midwifery",
-    duration: "3 years",
+    duration: "..",
     description:
       "Our Diploma in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
   },
 ];
 
 function HomePage() {
+  const [open, onOpenChange] = useState(true);
   return (
     <div className="min-h-screen bg-orange-50">
       <main>
         <section className="relative bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white overflow-hidden">
+          <Dialog.Root onOpenChange={onOpenChange} open={open}>
+            <Dialog.Content>
+              <Flex align={"center"} justify={"between"} mb={"4"}>
+                <Dialog.Title>Notice Board</Dialog.Title>
+                <Dialog.Close>
+                  <IconButton>
+                    <X />
+                  </IconButton>
+                </Dialog.Close>
+              </Flex>
+              <Dialog.Description mb={"4"} size={"2"} weight={"bold"}>
+                📢 Announcement: Sahad College of Nursing Application Open for
+                2024/2025 Academic Session! 📢
+              </Dialog.Description>
+              <Text style={{ color: "black" }} size={"1"}>
+                We are excited to announce that applications for admission to
+                the 2024/2025 academic calendar at Sahad College of Nursing are
+                now open! Aspiring nursing students are encouraged to submit
+                their applications as soon as possible. Key Dates: Application
+                Deadline: 14th November 2024 Entrance Exam: 18th November 2024
+                To apply, please click the "Apply" button below. Be sure to
+                carefully read the instructions provided before completing your
+                application. Don&apos;t miss this opportunity to join one of the
+                leading institutions in nursing education. Apply now to secure
+                your place and take the first step towards a rewarding career in
+                healthcare!
+              </Text>
+            </Dialog.Content>
+          </Dialog.Root>
+
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -67,7 +111,7 @@ function HomePage() {
                 className="relative h-[400px] lg:h-[500px]"
               >
                 <img
-                  src={image_url}
+                  src={bg}
                   alt="Nursing students in a modern healthcare setting"
                   className="rounded-lg shadow-2xl bg-cover"
                 />
@@ -75,7 +119,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <Heading size={"7"} align={"center"}>
@@ -106,7 +149,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-
         <section className="bg-orange-100 py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -152,7 +194,7 @@ function HomePage() {
                 className="relative h-[400px]"
               >
                 <img
-                  src={image_url}
+                  src={why}
                   alt="Students in a nursing simulation lab"
                   className="rounded-lg shadow-xl bg-cover"
                 />
@@ -160,7 +202,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">
