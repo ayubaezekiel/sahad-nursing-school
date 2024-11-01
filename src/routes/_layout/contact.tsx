@@ -1,5 +1,4 @@
 import { ContactPage } from "@/components/ContactUs";
-import { image_url } from "@/lib/constants";
 import { Button } from "@radix-ui/themes";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";

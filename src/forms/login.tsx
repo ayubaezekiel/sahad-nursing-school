@@ -44,14 +44,14 @@ export function Login() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const { token, record } = await pb
-        .collection("users")
-        .authWithPassword(values.email, values.password);
-
+      const { token, admin } = await pb.admins.authWithPassword(
+        values.email,
+        values.password
+      );
       if (token) {
         toast({
-          title: record?.email,
-          description: `${record?.email} loggged in successfully`,
+          title: admin?.email,
+          description: `${admin?.email} loggged in successfully`,
         });
         navigate({ to: "/admin/dashboard", replace: true });
       }
@@ -59,6 +59,7 @@ export function Login() {
       throw toast({
         title: "Error",
         description: `${error}`,
+        variant: "destructive",
       });
     }
   }

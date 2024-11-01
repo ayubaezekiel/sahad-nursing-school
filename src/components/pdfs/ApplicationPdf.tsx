@@ -1,28 +1,15 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import {
   Document,
+  Image,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  pdf,
-  Image,
 } from "@react-pdf/renderer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import React from "react";
+import * as z from "zod";
+import logo from "../../assets/logo.png";
+
 const subjectSchema = z.object({
   exam_type: z.string().min(1, { message: "Exam type is required" }),
   exam_number: z.string().min(1, { message: "Exam number is required" }),
@@ -134,14 +121,22 @@ export const MyDocument: React.FC<{ formData: FormValues }> = ({
             alignItems: "center",
           }}
         >
-          <Text style={styles.title}>SAHAD COLLEGE OF NURSING, ABUJA</Text>
-          <Text style={styles.subtitle}>
-            ADMISSION FORM 2024/2025 ACADEMIC SESSION
-          </Text>
+          <View>
+            <Image
+              style={{ width: 300, height: 50, marginBottom: 10 }}
+              src={logo}
+            />
+          </View>
+          <View>
+            <Text style={styles.title}>SAHAD COLLEGE OF NURSING, ABUJA</Text>
+            <Text style={styles.subtitle}>
+              ADMISSION FORM 2024/2025 ACADEMIC SESSION
+            </Text>
 
-          <Text style={styles.text}>
-            APPLICATION ID: {formData.applicationNumber}
-          </Text>
+            <Text style={styles.text}>
+              APPLICATION ID: {formData.applicationNumber}
+            </Text>
+          </View>
         </View>
       </View>
       <View style={styles.section}>
