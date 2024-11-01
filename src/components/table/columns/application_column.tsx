@@ -210,7 +210,11 @@ export const application_columns: ColumnDef<FormData>[] = [
     accessorKey: "middle_name",
     header: "Middle Name",
     cell: ({ row }) => (
-      <Text className="capitalize">{row.getValue("middle_name")}</Text>
+      <Text className="capitalize">
+        {row.getValue("middle_name") === "undefined"
+          ? "-"
+          : row.getValue("middle_name")}
+      </Text>
     ),
   },
   {

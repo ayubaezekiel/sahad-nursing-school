@@ -11,6 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@radix-ui/themes";
 import lab from "../assets/lab.jpg";
+import lib from "../assets/sahad4.jpg";
+import sim from "../assets/sahad3.jpg";
 
 interface Facility {
   id: number;
@@ -23,7 +25,7 @@ const facilities: Facility[] = [
   {
     id: 1,
     name: "State-of-the-Art Simulation Lab",
-    image: "/placeholder.svg?height=400&width=400",
+    image: sim,
     description:
       "Our simulation lab provides students with hands-on experience in a controlled environment, featuring high-fidelity mannequins and advanced medical equipment. This facility allows students to practice critical nursing skills and decision-making in realistic scenarios without risk to actual patients.",
   },
@@ -37,7 +39,7 @@ const facilities: Facility[] = [
   {
     id: 3,
     name: "Comprehensive Library",
-    image: "/placeholder.svg?height=400&width=400",
+    image: lib,
     description:
       "Our library houses an extensive collection of nursing and medical literature, both print and digital, to support student research and learning. It includes quiet study areas, group discussion rooms, and computer stations with access to online medical databases and journals.",
   },
