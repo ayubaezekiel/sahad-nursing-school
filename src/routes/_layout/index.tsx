@@ -32,16 +32,16 @@ function HomeComponent() {
 
 const programs = [
   {
-    name: "Diploma in Basic Nursing",
+    name: "Basic Nursing",
     duration: "..",
     description:
       "Comprehensive program preparing students for a wide range of nursing careers in various healthcare settings.",
   },
   {
-    name: "Diploma in Midwifery",
+    name: "Basic Midwifery",
     duration: "..",
     description:
-      "Our Diploma in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
+      "Our Program in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
   },
 ];
 

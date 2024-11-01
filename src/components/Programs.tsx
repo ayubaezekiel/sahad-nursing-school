@@ -40,7 +40,7 @@ interface Program {
 
 const programs: Program[] = [
   {
-    name: "Diploma in Basic Nursing",
+    name: "Basic Nursing",
     degree: "DBN",
     duration: "..",
     startDates: ["Movember", "December"],
@@ -66,12 +66,12 @@ const programs: Program[] = [
     tuitionFee: 10000,
   },
   {
-    name: "Diploma in Basic Midwifery",
+    name: "Basic Midwifery",
     degree: "DM",
     duration: "...",
     startDates: ["Coming Soon"],
     description:
-      "Our Diploma in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
+      "Our Program in Midwifery program focuses on maternal and newborn care, preparing students for a specialized career in midwifery.",
     courses: [
       "Anatomy and Physiology",
       "Fundamentals of Midwifery",
