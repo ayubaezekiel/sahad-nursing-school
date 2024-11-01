@@ -230,7 +230,7 @@ export function ProgramsPage() {
           <div className="mt-6 flex items-center justify-between">
             <div className="flex items-center">
               <Calendar className="mr-2 h-5 w-5 text-orange-600" />
-              <span>Application Deadlines: November 14 (January intake) </span>
+              <span>Application Deadlines: November 14 (November intake) </span>
             </div>
             <Button>
               <Link href="/apply">Start Your Application</Link>
