@@ -125,7 +125,7 @@ function AboutComponent() {
             </CardHeader>
             <CardContent className="text-center">
               <p className="mb-4">
-                Founded in 2023, Sahad College of Nursing is dedicated to
+                Founded in 2024, Sahad College of Nursing is dedicated to
                 addressing Nigeria’s healthcare needs by training skilled,
                 compassionate nurses. Though young, the college has quickly
                 built a reputation for excellence, combining a rigorous
@@ -143,12 +143,10 @@ function AboutComponent() {
                 mutual respect and cultural competence.
               </p>
               <p className="mb-4">
-                Sahad College graduates are already making a positive impact in
-                the healthcare field, reflecting the institution’s commitment to
-                excellence and integrity. As it grows, Sahad aims to remain a
-                leader in nursing education by integrating new technologies and
-                best practices, preparing future healthcare leaders who will
-                contribute meaningfully to Nigerian and global healthcare.
+                As it grows, Sahad aims to remain a leader in nursing education
+                by integrating new technologies and best practices, preparing
+                future healthcare leaders who will contribute meaningfully to
+                Nigerian and global healthcare.
               </p>
             </CardContent>
           </Card>

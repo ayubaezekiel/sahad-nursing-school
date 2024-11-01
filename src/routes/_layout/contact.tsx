@@ -4,7 +4,7 @@ import { Button } from "@radix-ui/themes";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
-import front from "../../assets/front.jpg";
+import front from "../../assets/s6.jpg";
 
 export const Route = createFileRoute("/_layout/contact")({
   component: () => (
