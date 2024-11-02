@@ -35,7 +35,6 @@ interface Program {
   courses: string[];
   careerProspects: string[];
   applicationFee: number;
-  tuitionFee: number;
 }
 
 const programs: Program[] = [
@@ -63,7 +62,6 @@ const programs: Program[] = [
       "Research Nurse",
     ],
     applicationFee: 10000,
-    tuitionFee: 10000,
   },
   {
     name: "Basic Midwifery",
@@ -89,7 +87,6 @@ const programs: Program[] = [
       "Midwifery Educator",
     ],
     applicationFee: 10000,
-    tuitionFee: 100000,
   },
 ];
 
@@ -133,9 +130,6 @@ const ProgramCard: React.FC<{ program: Program }> = ({ program }) => (
       <div>
         <p className="text-sm text-gray-500">
           Application Fee: ₦{program.applicationFee.toLocaleString()}
-        </p>
-        <p className="text-sm text-gray-500">
-          Tuition Fee: ₦{program.tuitionFee.toLocaleString()}/year
         </p>
       </div>
       <Button>
