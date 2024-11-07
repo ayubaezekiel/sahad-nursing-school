@@ -18,7 +18,7 @@ const Inbox = () => {
   const { data: contact, isPending: isContactPending } = useContact();
 
   const contacts =
-    contact?.items.map((a) => ({
+    contact?.map((a) => ({
       created: a.created,
       updated: a.updated,
       name: a.name,

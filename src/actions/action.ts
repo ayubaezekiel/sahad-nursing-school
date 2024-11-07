@@ -16,7 +16,7 @@ export const useUser = () => {
 export const useApplications = () => {
   return useQuery({
     queryFn: async () => {
-      const application = await pb.collection("application_form").getList();
+      const application = await pb.collection("application_form").getFullList();
       return application;
     },
     staleTime: 0,
@@ -38,7 +38,7 @@ export const useAnouncement = () => {
 export const useContact = () => {
   return useQuery({
     queryFn: async () => {
-      const contact = await pb.collection("contacts").getList();
+      const contact = await pb.collection("contacts").getFullList();
       return contact;
     },
     queryKey: ["AllContact"],

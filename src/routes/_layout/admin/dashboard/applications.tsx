@@ -18,7 +18,7 @@ const Applications = () => {
     useApplications();
 
   const applications =
-    application?.items.map((a) => ({
+    application?.map((a) => ({
       id: a.id,
       collectionId: a.collectionId,
       evidence_of_payment: a.evidence_of_payment,
@@ -54,9 +54,9 @@ const Applications = () => {
       {isApplicationPending && !applications ? (
         <Spinner />
       ) : (
-        <>
+        <div className="mb-10">
           <DataTable columns={application_columns} data={applications} />
-        </>
+        </div>
       )}
     </div>
   );

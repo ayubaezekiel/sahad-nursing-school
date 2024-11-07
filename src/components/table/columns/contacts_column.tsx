@@ -1,50 +1,33 @@
-import { ColumnDef } from "@tanstack/react-table";
-import { Button, DropdownMenu } from "@radix-ui/themes";
-import {
-  ArrowUpIcon,
-  ArrowDownIcon,
-  DotsHorizontalIcon,
-} from "@radix-ui/react-icons";
-import { toast } from "@/hooks/use-toast";
 import { ContactRecord } from "@/types/types";
+import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
+import { Button, Dialog, Text } from "@radix-ui/themes";
+import { ColumnDef } from "@tanstack/react-table";
+import { X } from "lucide-react";
+
+const DetailModal = ({ note }: { note: string }) => {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger>
+        <Button variant="soft">View</Button>
+      </Dialog.Trigger>
+      <Dialog.Content minHeight={"30rem"}>
+        <Dialog.Title>Applicant Details</Dialog.Title>
+        <Dialog.Description size={"1"} mb={"4"}>
+          Comprehensive information about the applicant
+        </Dialog.Description>
+
+        <Text>{note}</Text>
+        <Dialog.Close>
+          <Button variant="soft" className="absolute top-4 right-4">
+            <X />
+          </Button>
+        </Dialog.Close>
+      </Dialog.Content>
+    </Dialog.Root>
+  );
+};
 
 export const contact_columns: ColumnDef<ContactRecord>[] = [
-  {
-    accessorKey: "name",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Name
-          {column.getIsSorted() === "asc" ? (
-            <ArrowUpIcon className="ml-2 h-4 w-4" />
-          ) : (
-            <ArrowDownIcon className="ml-2 h-4 w-4" />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
-  },
-  {
-    accessorKey: "email",
-    header: "Email",
-    cell: ({ row }) => <div>{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "subject",
-    header: "Subject",
-    cell: ({ row }) => <div>{row.getValue("subject")}</div>,
-  },
-  {
-    accessorKey: "message",
-    header: "Message",
-    cell: ({ row }) => (
-      <div className="truncate max-w-[300px]">{row.getValue("message")}</div>
-    ),
-  },
   {
     accessorKey: "created",
     header: ({ column }) => {
@@ -67,57 +50,35 @@ export const contact_columns: ColumnDef<ContactRecord>[] = [
     ),
   },
   {
-    accessorKey: "updated",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Updated
-          {column.getIsSorted() === "asc" ? (
-            <ArrowUpIcon className="ml-2 h-4 w-4" />
-          ) : (
-            <ArrowDownIcon className="ml-2 h-4 w-4" />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div>{new Date(row.getValue("updated")).toLocaleString()}</div>
-    ),
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
-    id: "actions",
-    cell: ({ row }) => {
-      const contact = row.original;
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => <div>{row.getValue("email")}</div>,
+  },
+  {
+    accessorKey: "subject",
+    header: "Subject",
+    cell: ({ row }) => <div>{row.getValue("subject")}</div>,
+  },
+  {
+    accessorKey: "message",
+    header: "Message",
+    cell: ({ row }) => (
+      <div className="truncate max-w-[300px]">{row.getValue("message")}</div>
+    ),
+  },
 
-      return (
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger>
-            <Button variant="ghost">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Content>
-            <DropdownMenu.Item
-              onSelect={() => {
-                navigator.clipboard.writeText(contact.email);
-                toast({
-                  title: "Email Copied",
-                  description: "Email has been copied to your clipboard.",
-                });
-              }}
-            >
-              Copy email address
-            </DropdownMenu.Item>
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item>View details</DropdownMenu.Item>
-            <DropdownMenu.Item>Delete contact</DropdownMenu.Item>
-          </DropdownMenu.Content>
-        </DropdownMenu.Root>
-      );
-    },
+  {
+    accessorKey: "message",
+    header: "View",
+    cell: ({ row }) => (
+      <div>
+        <DetailModal note={row.getValue("message")} />
+      </div>
+    ),
   },
 ];
