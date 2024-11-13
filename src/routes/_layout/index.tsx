@@ -1,10 +1,7 @@
 import { Footer } from "@/components/Footer";
-import { image_url } from "@/lib/constants";
 import {
   Button,
-  Callout,
   Card,
-  Container,
   Dialog,
   Flex,
   Heading,
@@ -26,6 +23,7 @@ function HomeComponent() {
   return (
     <div>
       <HomePage />
+      <Footer />
     </div>
   );
 }

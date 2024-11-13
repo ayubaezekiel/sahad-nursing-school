@@ -6,6 +6,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 import serv from "../../assets/serv.jpg";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/_layout/faculty")({
   component: () => (
@@ -84,6 +85,7 @@ export const Route = createFileRoute("/_layout/faculty")({
       </div>
       <FacultyPage />
       <FacilitiesGallery />
+      <Footer />
     </div>
   ),
 });

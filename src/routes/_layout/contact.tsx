@@ -4,10 +4,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 import front from "../../assets/s6.jpg";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/_layout/contact")({
   component: () => (
-    <div>
+    <section>
       <div className="relative bg-orange-600 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-pink-600 opacity-75" />
         <div className="relative z-10 container mx-auto px-4 py-16 flex flex-col lg:flex-row items-center justify-between mt-10">
@@ -84,6 +85,7 @@ export const Route = createFileRoute("/_layout/contact")({
       </div>
 
       <ContactPage />
-    </div>
+      <Footer />
+    </section>
   ),
 });

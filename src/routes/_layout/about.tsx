@@ -8,6 +8,7 @@ import { PrincipalOfficers } from "@/components/PrincipalOfficers";
 import { HeadsOfUnits } from "@/components/HeadsOfUnit";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
+import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/_layout/about")({
   component: AboutComponent,
@@ -194,6 +195,7 @@ function AboutComponent() {
       <MissionVisionProvost />
       <PrincipalOfficers />
       <HeadsOfUnits />
+      <Footer />
     </section>
   );
 }
